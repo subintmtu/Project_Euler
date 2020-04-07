@@ -45,8 +45,7 @@ def primeFactors(n):
         if(maxRange%2==0): maxRange = maxRange + 5
 
         while (n!=1) :
-            x = maxRange - 2
-            maxRange = maxRange - 2
+            x, maxRange = maxRange - 2, maxRange - 2
             
             if(isPrime(x)):
                 counter = 0
@@ -58,7 +57,11 @@ def primeFactors(n):
                         FactorList[n] = 1
                         n = 1
                         break
+                        
     return(pd.DataFrame.from_dict(FactorList, orient='index', columns=['Count']))
 
-
 # *******************************************************************
+# Check for Palindrome 
+
+def isPalindrome(num):
+    return(str(num)==str(num)[::-1])
