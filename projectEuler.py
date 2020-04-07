@@ -40,12 +40,10 @@ def primeFactors(n):
         if(isPrime(n)):
             FactorList[n] = 1
             n = 1
-            return(pd.DataFrame.from_dict(FactorList, orient='index', columns=['Count']))
         
         maxRange = int(math.sqrt(n)) + 4
         if(maxRange%2==0): maxRange = maxRange + 5
 
-#         for x in range(maxRange,1,-2) :
         while (n!=1) :
             x = maxRange - 2
             maxRange = maxRange - 2
