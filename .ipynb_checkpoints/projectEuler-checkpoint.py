@@ -103,3 +103,16 @@ def genPalindrome(num = 1000):
             npal = int(str(i) + str(i)[::-1])
             pal.append(npal)
     return(pd.Series(pal))
+
+# *******************************************************************
+# Factorial 
+
+def factorial(iMax=10,iMin=2):
+    """
+    Return factorial of iMax
+    Return product between iMin and iMax
+    """
+    fact = 1
+    for x in range(iMin,iMax+1):
+        fact = fact*x
+    return(fact)
