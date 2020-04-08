@@ -54,7 +54,10 @@ def primeFactors(n):
                     counter = counter + 1
                     FactorList[x] = counter
                     if(isPrime(n)) :
-                        FactorList[n] = 1
+                        if(n in FactorList.keys()):
+                            FactorList[n] = FactorList[n] + 1
+                        else:
+                            FactorList[n] = 1
                         n = 1
                         break
                         
@@ -64,4 +67,39 @@ def primeFactors(n):
 # Check for Palindrome 
 
 def isPalindrome(num):
+    """
+    Check Palindrome or not
+    """
     return(str(num)==str(num)[::-1])
+
+# *******************************************************************
+# Generate Palindrome
+
+def genPalindrome(num = 1000):
+    """
+    Returns a series of palindromic numbers with same number of digits 
+    less than or equal to num
+    """
+    digLen = len(str(num))
+    pal = []
+    if(digLen%2):
+        Len = (digLen-1)//2
+        na = int(num)//10**(Len)
+        LLim = 10**(Len) - 1
+        npal = int(str(na) + str(na)[-2::-1])
+        if(npal > num):
+            na = na - 1
+        for i in range(na,LLim,-1):
+            npal = int(str(i) + str(i)[-2::-1])
+            pal.append(npal)
+    else:
+        Len =  digLen//2
+        na = int(num)//10**(Len)
+        LLim = 10**(Len-1) - 1
+        npal = int(str(na) + str(na)[::-1])
+        if(npal > num):
+            na = na - 1
+        for i in range(na,LLim,-1):
+            npal = int(str(i) + str(i)[::-1])
+            pal.append(npal)
+    return(pd.Series(pal))
