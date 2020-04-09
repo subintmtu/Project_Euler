@@ -1,5 +1,6 @@
 import math
 import pandas as pd
+import numpy as np
 
 # Returns true if the input n is prime
 def isPrime(n) :
@@ -23,7 +24,7 @@ def isPrime(n) :
 # Returns prime factors and their count
 def primeFactors(n):
     """
-    Returns prime factors and their count
+    Returns a dataframe of prime factors and their count
     """
     FactorList = {}
 
@@ -62,6 +63,23 @@ def primeFactors(n):
                         break
                         
     return(pd.DataFrame.from_dict(FactorList, orient='index', columns=['Count']))
+
+# *******************************************************************
+# Returns all factors of n
+
+def factorList(n = 100):
+    """
+    Return a list of factors of number n
+    """
+    lLim = int(math.sqrt(n))+1
+    factorList = []
+    for i in range(1,lLim) :
+        if(n%i==0):
+            factorList.append(i)
+            factorList.append(n//i)
+    factorList.sort()
+    del factorList[-1]
+    return(list(set(factorList)))
 
 # *******************************************************************
 # Check for Palindrome 
@@ -116,3 +134,19 @@ def factorial(iMax=10,iMin=2):
     for x in range(iMin,iMax+1):
         fact = fact*x
     return(fact)
+
+# *******************************************************************
+# Count digits in a number
+
+def countNumbers(n = 1234567890):
+    """
+    Return a dataframe of the number of digits in a number
+    """
+    countN = {}
+    for i in str(n):
+        if i not in countN.keys():
+            countN[i] = 1
+        else:
+            countN[i] = countN[i] + 1
+    countN = pd.DataFrame.from_dict(countN,orient='index',columns=['Count']).sort_index()
+    return(countN)
