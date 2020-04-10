@@ -72,13 +72,12 @@ def factorList(n = 100):
     Return a list of factors of number n
     """
     lLim = int(math.sqrt(n))+1
-    factorList = []
-    for i in range(1,lLim) :
+    factorList = [1]
+    for i in range(2,lLim) :
         if(n%i==0):
             factorList.append(i)
             factorList.append(n//i)
     factorList.sort()
-    del factorList[-1]
     return(list(set(factorList)))
 
 # *******************************************************************
@@ -150,3 +149,23 @@ def countNumbers(n = 1234567890):
             countN[i] = countN[i] + 1
     countN = pd.DataFrame.from_dict(countN,orient='index',columns=['Count']).sort_index()
     return(countN)
+
+# *******************************************************************
+# Fibonacci Numbers
+
+def fibonacci(n=10):
+    """
+    Returns nth Fibonacci number
+    """
+    if( n < 0 ) : return(float('NaN'))
+    if( 0 <= n <= 1) : return(n)
+    
+    a = 0
+    b = 1
+    
+    for i in range(n):
+        a, b = b, a + b
+    
+    return(a)
+
+# *******************************************************************
